@@ -6,7 +6,7 @@ const favoritesSchema = new mongoose.Schema({
             type: String
         }
     ],
-    directions: [
+    instructions: [
         {
             type: String
         }
