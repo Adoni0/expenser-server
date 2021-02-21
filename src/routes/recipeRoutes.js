@@ -13,20 +13,20 @@ router.get('/favs', async (req, res) => {
     res.send(favs);
 });
 
-router.get('/shoplist', (req, res) => {
+router.get('/shoplist', async (req, res) => {
     const list = await ShopList.find({ userId: req.user._id });
     res.send(list);
 });
 
 router.post('/favs', async (req, res) => {
-    const { ingredients, instructions, title, image } = req.body;
+    const { recipeId, title, image } = req.body;
 
-    if(!ingredients || !instructions || !title || !image){
+    if(!recipeId || !title || !image){
         return res.status(422).send('Must provide all neccessary fields for favorites');
     }
 
     try {
-        const favs = new Favorites({ ingredients, instructions, title, image, userId: req.user._id });
+        const favs = new Favorites({ recipeId, title, image, userId: req.user._id });
         await favs.save();
         res.send(favs);
     } catch (err) {

@@ -5,16 +5,11 @@ const favoritesSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    ingredients: [
-        {
-            type: String
-        }
-    ],
-    instructions: [
-        {
-            type: String
-        }
-    ],
+    recipeId: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     title: {
         type: String,
         required: true
